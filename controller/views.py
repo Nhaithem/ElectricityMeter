@@ -23,8 +23,7 @@ class UpdateRelay(APIView):
 class GetRelay(APIView):
     def post(self, request):
         try:
-            gId=request.POST.get('Id',None)
-            gValue=request.POST.get('Value',None)
+            gId=request.POST.get('Id',1)
             r=Relay.objects.filter(Id=gId).first()
             if(r!=None):
                 return Response({'Response': 'Success',"Relay":r.Value})
