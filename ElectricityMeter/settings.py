@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'controller.apps.ControllerConfig',
     'rest_framework',
-    "corsheaders",
 ]
 
 MIDDLEWARE = [
@@ -52,22 +51,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ORS_ALLOWED_ORIGINS = [
-    "http://localhost:8000",
-]
-CORS_ALLOWED_ORIGIN_REGEXES = [
-    r"^https://\w+\.example\.com$",
-]
-CORS_URLS_REGEX = r"^/api/.*$"
-
-CORS_ALLOW_METHODS = (
-    "DELETE",
-    "GET",
-    "OPTIONS",
-    "PATCH",
-    "POST",
-    "PUT",
-)
 
 ROOT_URLCONF = 'ElectricityMeter.urls'
 
