@@ -19,7 +19,19 @@ class UpdateRelay(APIView):
             return Response({'Response': 'Not Exist'})
         except:
             return Response({'Response': 'Failed'})
-        
+
+class GetRelay(APIView):
+    def post(self, request):
+        try:
+            gId=request.POST.get('Id',None)
+            gValue=request.POST.get('Value',None)
+            r=Relay.objects.filter(Id=gId).first()
+            if(r!=None):
+                return Response({'Response': 'Success',"Relay":r.Value})
+            return Response({'Response': 'Not Exist'})
+        except:
+            return Response({'Response': 'Failed'})
+
 class Login(APIView):
     def post(self, request):
         try:
@@ -62,28 +74,3 @@ class GetAllData(APIView):
         except:
             return Response({'Response': 'Failed'})
            
-class SendNotification(APIView):
-    
-    def post(self, request):
-        try:
-            title="Title 01"
-            body="Body"
-            s=''
-            tokens=[]
-            admins=Admin.objects.all()
-            for admin in admins:
-                tokens.append(admin.token)
-
-            cred = credentials.Certificate('firebase-serviceAccountKey.json')
-            firebase_admin.initialize_app(cred)
-            
-            message = messaging.MulticastMessage(
-                notification=messaging.Notification(
-                    title=title,
-                    body=body
-                ),
-                tokens=tokens,
-            )
-            return Response({'Response': 'Success'})    
-        except:
-            return Response({'Response': 'Failed'})
