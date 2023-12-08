@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-@xr8nkw-3)c6xa#jc(#dm!=$h17-(bkddkj@s18h%m**j#a&0k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['.vercel.app','now.sh', '127.0.0.1' , 'localhost']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'controller.apps.ControllerConfig',
     'rest_framework',
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
@@ -51,6 +52,22 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+ORS_ALLOWED_ORIGINS = [
+    "http://localhost:8000",
+]
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^https://\w+\.example\.com$",
+]
+CORS_URLS_REGEX = r"^/api/.*$"
+
+CORS_ALLOW_METHODS = (
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+)
 
 ROOT_URLCONF = 'ElectricityMeter.urls'
 
